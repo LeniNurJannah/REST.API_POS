@@ -21,10 +21,24 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
+Route::get('/about', function () {
+    return 'Halaman About';
+});
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/about/{search}', function () {
+    $data = [
+        'pageTitle' => 'Tentang Kami',
+        'content' => 'Ini adalah halaman tentang kami.'
+    ];
+    return view('about', $data);
+});
 
-Auth::routes();
+Route::resource('/profil', App\Http\Controllers\ProfilController::class);
+Route::resource('/produk', 'App\Http\Controllers\ProdukController');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
+
+
+
